@@ -1,0 +1,9 @@
+
+Class Compatibility:-
+		A class behaviourlly compatbil only if it supports all operations of other classes. This class is called sub-type. Derived class are sub-type of the base class.
+		Base class can be replace by its sub-type classes. It can support all legal messages (stimulis) of the base class.
+6.2-) Polymorphism:-
+			In general polymorphism, "an entity can exist in different forms.". i.e diamond and carbon are different form of carbon.
+			While in OO model polymorphism, " an object (entity) can behave in different ways for the same message". Consequently,
+			sender of the message doesn't need to know the exact class of the reciever. Sender send message to the reciever and appropriate method called on the reciever.
+		

@@ -1,0 +1,152 @@
+
+Maint Topic:
+
+	1-) Association
+	2-) Composition
+	3-) Aggregation
+	
+5.1) Multiple Inheritance:-
+					Sometime need to reuse characteristic(Property and Method) of more than one parent class, in that case we need to inherit a class from more than one parent class.
+					Example:
+						Imaginary Specie Mermaid (Half woman and Half fish).
+					
+					c++ code:
+						class women{};
+						class fist{};
+						class Mermaid:public women,public fish{};
+						int main(){
+							Mermaid mermaid;
+						}
+						// Now classes with function
+						class women{
+							public:
+								void walk(){
+									cout << "I am walk method from women class \n";
+								}
+						};
+						class fish{
+							public:
+								void swim(){
+									cout << "I am swim method from fish class \n";
+								}
+						}
+						
+						class Mermaid:public women,public fish{
+							Mermaid mermaid;
+							mermaid.walk();
+							mermaid.swim();
+							system('PAUSE');
+							return 0;
+						}
+	<-------------------------------------------------------------------->
+	Advantages of Multiple Inheritance:-
+			As like single(simple) class inheritance, it decreases the redundant of code , we can inherit a class from many classes and we can user their functions
+			without creating them again and again.
+			Multiple Inheritance has some advantages but it has more dis-advantages.
+		<----------------------------------------------------------------->
+	Dis-advantages of Multiple Inheritance:-
+		1-) Increase Complexity:-
+					Amphibious vehicle hierarchy is complicated, it inherit from many classes, it reduced understanding of code, make code complex, it is also a complicated 
+					vehicle. It is generic problem.
+		2-) Less Understanding:-
+					Due to complexity of class hierarchy, the object model difficult to understand, especially for whom, who looking at it first time.
+		3-) Duplicate Features:-
+					As multiple inheritance is done by many classes, so there may be a chance already same features done on both classes, it arise problem due to duplicate features.
+	<--------------------------------------------------------------------->
+	
+	Problem:-
+		For example both parent class has their own method to eat, now for Mermaid class which method it should allowed, mean eat method from women class or fish class,
+		This problem is solved explicitly calling the method of a class, if Mermaid eat like woman then woman class, else fish class eat method will be used, and the eat method
+		will be overriden.
+		
+		c++ code:
+		class women {
+			public:
+				void eat () {
+					cout << "I am eat method from women class";
+				}
+		}
+		
+		class fish {
+			public:
+				void eat () {
+					cout << "I am eat method from fish class ";
+				}
+		}
+		
+		class Mermaid:public women,public fish {
+			public:
+				void eat () {
+					cout << "\n In Mermaid class explicitly calling the woman eat method. \n";
+					women::eat();
+					}
+		}
+		
+		int main(){
+			Mermaid mermaid;
+			mermaid.eat();
+		}
+		
+		Problem 2:
+			In Amphibious vehicle compiler will be confues by changeGear method, because it alreay inherit in landVehicle and waterVehicle classes,
+			So compiler will generate error which changeGear() method should it use. 
+			In that case some programming languages not allowed multiple inheritance,
+			While some allowed but also guide to use one side characteristic (Property and Method) of a class. In c++ there are two method to solve it one is virtual-inheritance
+			and other is non-virtual-inheritance.
+			Problem arised in Amphibious vehicle is diamond problem.
+			
+		5.2-) Association:-
+					In OO model objects interact with eachother to perfrom useful task, this interaction is known as "Association".
+					This way objects provides some services to other objects to delegate tasks. This association is represent by a line along with Arrow-Head or without Arrow-Head.
+				There are two main types of Association which further subdivied:-
+				1-) class, 2-) object
+				
+				Class:- 
+					The association in class is implemented in terms of inheritance, inheritance implements generalization/specialization relationship b/w objects.
+						1-) In case of public inheritance it is "IS A" relationship.
+						2-) In case of private inheritance it is "Implemented in terms of" relationship.
+				In the case of public inheritance all characteristic (Property and Method) of base class is available to derived class.
+				When objects created of classes in which we have implemented inheritance we are forcing the inheritance relationship b/w the created objects.
+				In this case drived class objects will contain base class objects.
+				
+				Object:-
+					This association is done by created object of a class with another objects of classes.
+					There three types of object association, which further more divided.
+					1-) Simple Association, 2-) Composition, 3-) Aggregation.
+					Simple Association:- 
+						In it object has no intrinsic (natural) relationship. It is a weakest link in b/w objects. It is a reference, by which object interact with other object.
+						Customer get cash from cashier
+						Employee works in Company
+					Simple Association has two categories which are further divide in sub-categories.
+						1-) assocation w.r.t direction(navigation)
+						2-) assocation w.r.t number of objects (cardinality)
+						
+						Association w.r.t direction has two types.
+							1-) one-way association, 2-) two-way association
+							In One-way Association we can go along with one direction only. It is denoted by a line along with arrow.
+							In Two-way assocation we go along with both direction, it is denoted by a single line. i.e Ali is a friend of Aslam, Aslam is a friend of Ali.
+						
+						Association w.r.t number of objects (Cardinality)
+							It as three types. 1-) Binary Association , 2-) Ternary Association , 3-) N-ary Association
+							Binary Assocation is in two objects of two classes denoted by a line or arrow-head on both side.
+							Ternary Association is in three objects of three classes, it is denoted by diamond shape with lines.
+							N-ary Association is b/w 3 or more than class, its practical example is very rare.
+		5.3-) Composition:-
+						In composition an object contain of other smaller objects, the relationship b/w "part" object and the "whole" object is called Composition.
+						It is denoted by a line along with filled diamnond header toward the composer object.
+						Advantages:-
+								1-) It is a stronger relationship.
+								2-) an object can't exist independly.
+								3-) Composed object become part of the composer
+		5.4-) Aggregation:-
+						In it an object may contain a collection of other objects, the relationship b/w the container and contain object is called aggregation, is denoted
+						a line along with empty-diamond header towards the container object.
+						Advantages:-
+							It is a weak relationship.
+							container can exist independly.
+						Example 
+								Furniture is not an intrinsic part of room
+								Furniture can be shifted to another room, and so can exist independent of a
+								particular room
+								
+							

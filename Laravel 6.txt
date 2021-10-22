@@ -1,0 +1,110 @@
+ Authentication:- User login or not
+ Authorization:- Check User Role, after login, which features allows a user to do. Used gates and policies, introduce Gate:inspect method.
+ 
+ Middleware:- Third party between Request and Response.
+ 
+ Lazy-collectoin:- Incase of iteration, for-example, like more than thousands record, computer will stuck, in-this case machine will leave it to work and perform next tasks.
+ 
+ Laravel-make:auth now in Laravel:-
+			1-) composer require laravel/ui "^1.0" --dev
+			2-) php artisan ui vue/bootstrap/react --auth
+			
+			
+		================================================================================
+		
+	PHP Framework For Web Artisans {Web Developer}, It Follow the MVC pattern. Model-View-Controller
+	
+	1-) Request via HTTP Routes first go to Controller, Controller will decide either call Model or View, and both of these.
+	2-) Model will deal with the Database, Table create, Set Relation, How retrieve Records From database?. 
+	3-) Controller will deal with application logic.
+	4-) View will deal with presentation logic.
+	
+	Note:- User can't directly connect with view.
+	
+	User will send request via HTTP Routes to controller, controller will request to model and model will return response to controller, then controller send response to view.
+	View will send response to HTTP Routes to display recod on the screen.
+	
+	Composer:- Dependency Manager For the PHP, via it we don't need to create and include files or load. Composer create a vendor folder in laravel, nxt work is done by
+	Vendor folder.
+	
+	1-)composer globla require laravel/installer , always install latest version.
+	2-) laravel new app_name
+	
+	Creating project via composer create-project :-
+		composer create-project --prefer-dist laravel/laravel blog "6.*"
+		
+		while using xampp, mamp, lamp, use that command to run laravel application. 
+		1-) php aritsan serve
+		
+		================================================================================================
+		
+	File and Folder Structure and Booting Process
+	
+	Folder for Beginner and mostly using folders are 
+		1-)app\
+		2-) resources\
+		3-) routes
+		4-) config
+		5-) database
+		
+		6-) Test // Either web run well or not,
+		7-) storage
+		8-) public // laravel start from it.
+	Note:- Vendor folder no need to change, or edit. simply don't touch it.
+	Files 
+		1-) .env
+		2-) artisan to execute artisans commands.
+		3-) composer.json  // compare itself with composer.lock, if new package available, then update in composer.lock and also in vendor folder.
+							// all first-party-packages, third-party-packages detail stored in composer.json file.
+		4-) package.json  // front-end scffolding, to install bootstrap, vue, react, different js utitlities, axios and so-on.
+		5-) phpunit.xml // for testing purpose.
+		6-) serve.php // for php artisan serve.
+		7-) webpack.mix.js // execute when use node.js 
+		
+	==============================================================
+	
+	Laravel Some Conventions:-
+			
+				1-) Controller name in pascal-case ArticleController
+				2-) Model name in Pascal to but singular like Article
+				3-) migrations name in lowercase with underscores no-space b/w words
+	===============================================================
+	
+	Laravel Command-Line Utilities:-
+	
+		1-) php aritsan help
+		2-) php artisan help make
+		3-) php artisan help make:model
+		4-) php artisan help make:controller
+		----------------------
+		Creating Model Class
+		
+		1-) php artisan make:model Article -m // -m will create resource controller {Seven-Methods} for model Article 
+		2-) php artisan make:model Article -a // -a will create resource controller,factory, seeder, 
+		
+		--------------------
+		Creating Controller Class
+		1-) php artisan make:controller ArticleController -r 
+		----------
+		Laravel Migration Commands:-
+		
+		1-) php artisan make:migration create_table_posts --create="posts"
+		2-) php artisan make:migration add_column_user_id_in_posts_table --table="posts"
+		
+		After creating columns
+		1-) php artisan migrate
+		2-) php artisan migrate:refresh
+		3-) php artisan migrate:fresh
+		4-) php artisan migrate:rollback
+		5-) php artisan migrate:rollback --step=6
+		
+	===========================================
+	
+	How to send Request and Handle them in Controller and How to convert them in response to display on screen?.
+	
+	public function store(Request $request){
+		return $request->all();
+	}
+		
+		
+	
