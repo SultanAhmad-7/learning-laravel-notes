@@ -105,6 +105,79 @@
 	public function store(Request $request){
 		return $request->all();
 	}
+	
+	
+	======================================
+	
+	To save original name of a file 
+	
+	1-) php artisan make:request StoreArticleRequest
+	
+		1-) public function authorize() {
+			return false; ///  this for validate users mean which login successfully.
+			
+			// replace false with true, it will work even you are not login.
+		}
 		
+		2-) public function rules() {
+			return [
+					'title' => 'required',
+					'photo' => 'required'
+					];
+		}
 		
+		3-) public function messages() {
+			return [
+				'title.required' => 'The Title Field Must be required',
+				'photo.required' => 'The Image Field Must be required.'
+			];
+			}
+			
+		4-) public function attributes() {
+				return ['title'=> 'Title', 'photo' => 'Logo'];
+			}	
+			
+		Note:- Only one will work for your validation from messages() and attributes().
+	
+	use Illuminate\Support\Str;
+	
+	$photo = $request->file('property_name_of_html_name_attribute_hold')->getClientOrigianlName();
+	$photoName = pathinfo($photo,PATHINFO_FILENAME);
+	$photoextension = pathinfo($photo,PATHINFO_EXTENSION);
+	
+	$file = Str::slug($photoName).".".$photoextension;
+	
+	$storedFile = $requset->file('photo')->storeAs('images/articles/',$file,'public');
+	
+	Article::create(
+					[
+					'title' => $request->title,
+					'photo' => $storedFile
+					]);
+	//// To access file mean to display on screen...
+	
+	php artisan storage:link
+	
+	<img src="{{ asset('storage/images/articles'.$article->photo) }}" >
+		
+	//// At ArticleController
+	
+		public function index() {
+			$article = Article::paginate(5);
+			
+			return view('articles.index',compact('article'));
+			}
+			
+	///// At view page articles/index.blade.php
+	
+			@foreach($article as $art)
+				
+				<h1> {{ $art->title }} </h1>
+			
+			@endforeach
+			
+			<li class="page-link"> {{ $article->links()}} </li>
+			
+	=======================================================
+	
 	
